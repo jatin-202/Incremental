@@ -1,25 +1,23 @@
 package com.edutech.progressive.entity;
 
 public class Cricketer {
-    private int cricketerId;
-    private int teamId;
+    private int cricketerld;
+    private int teamld;
     private String cricketerName;
     private int age;
     private String nationality;
     private int experience;
-    private String role; // "Batsman", "Bowler", "All-rounder", "Wicketkeeper"
+    private String role;
     private int totalRuns;
     private int totalWickets;
-
-    // No-argument constructor
+    
     public Cricketer() {
     }
 
-    // Parameterized constructor
-    public Cricketer(int cricketerId, int teamId, String cricketerName, int age, String nationality,
-            int experience, String role, int totalRuns, int totalWickets) {
-        this.cricketerId = cricketerId;
-        this.teamId = teamId;
+    public Cricketer(int cricketerld, int teamld, String cricketerName, int age, String nationality, int experience,
+            String role, int totalRuns, int totalWickets) {
+        this.cricketerld = cricketerld;
+        this.teamld = teamld;
         this.cricketerName = cricketerName;
         this.age = age;
         this.nationality = nationality;
@@ -29,21 +27,20 @@ public class Cricketer {
         this.totalWickets = totalWickets;
     }
 
-    // Getters and Setters
-    public int getCricketerId() {
-        return cricketerId;
+    public int getCricketerld() {
+        return cricketerld;
     }
 
-    public void setCricketerId(int cricketerId) {
-        this.cricketerId = cricketerId;
+    public void setCricketerld(int cricketerld) {
+        this.cricketerld = cricketerld;
     }
 
-    public int getTeamId() {
-        return teamId;
+    public int getTeamld() {
+        return teamld;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setTeamld(int teamld) {
+        this.teamld = teamld;
     }
 
     public String getCricketerName() {

@@ -1,7 +1,9 @@
 package com.edutech.progressive.entity;
 
+// entity/Team.java
+
 public class Team {
-    private int teamId;
+    private int teamld;
     private String teamName;
     private String location;
     private String ownerName;
@@ -10,21 +12,20 @@ public class Team {
     public Team() {
     }
 
-    public Team(int teamId, String teamName, String location, String ownerName, int establishmentYear) {
-        this.teamId = teamId;
+    public Team(int teamld, String teamName, String location, String ownerName, int establishmentYear) {
+        this.teamld = teamld;
         this.teamName = teamName;
         this.location = location;
         this.ownerName = ownerName;
         this.establishmentYear = establishmentYear;
     }
 
-    // Getters and Setters
-    public int getTeamId() {
-        return teamId;
+    public int getTeamld() {
+        return teamld;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setTeamld(int teamld) {
+        this.teamld = teamld;
     }
 
     public String getTeamName() {
