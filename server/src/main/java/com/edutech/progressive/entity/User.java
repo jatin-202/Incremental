@@ -1,35 +1,72 @@
 // entity/Team.java
 package com.edutech.progressive.entity;
 
-public class Team {
-    private int teamld;
-    private String teamName;
-    private String location;
-    private String ownerName;
-    private int establishmentYear;
+public class User {
+    private int userId;
+    private String fullName;
+    private String userName;
+    private String password;
+    private String email;
+    private String role;
 
-    public Team() {}
-
-    public Team(int teamld, String teamName, String location, String ownerName, int establishmentYear) {
-        this.teamld = teamld;
-        this.teamName = teamName;
-        this.location = location;
-        this.ownerName = ownerName;
-        this.establishmentYear = establishmentYear;
+    public User() {
     }
 
-    public int getTeamld() { return teamld; }
-    public void setTeamld(int teamld) { this.teamld = teamld; }
+    public User(int userId, String fullName, String userName, String password, String email, String role) {
+        this.userId = userId;
+        this.fullName = fullName;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+    }
 
-    public String getTeamName() { return teamName; }
-    public void setTeamName(String teamName) { this.teamName = teamName; }
+    public int getUserId() {
+        return userId;
+    }
 
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-    public String getOwnerName() { return ownerName; }
-    public void setOwnerName(String ownerName) { this.ownerName = ownerName; }
+    public String getFullName() {
+        return fullName;
+    }
 
-    public int getEstablishmentYear() { return establishmentYear; }
-    public void setEstablishmentYear(int establishmentYear) { this.establishmentYear = establishmentYear; }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
 }
