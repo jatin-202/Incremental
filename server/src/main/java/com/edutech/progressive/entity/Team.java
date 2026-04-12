@@ -1,67 +1,73 @@
+
 package com.edutech.progressive.entity;
 
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Team {
+import org.hibernate.annotations.GeneratorType;
 
+@Entity
+@Table(name = "team")
+public class Team implements Comparable<Team> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "team_id")
     private int teamId;
+    @Column(name = "team_name")
     private String teamName;
+    @Column(name="location")
     private String location;
+    @Column(name="owner_name")
     private String ownerName;
+    @Column(name="establishment_year")
     private int establishmentYear;
-
-    // No-Argument Constructor
     public Team() {
     }
-
-    // Parameterized Constructor
-    public Team(int teamId, String teamName, String location,
-            String ownerName, int establishmentYear) {
+    public Team(int teamId, String teamName, String location, String ownerName, int establishmentYear) {
         this.teamId = teamId;
         this.teamName = teamName;
         this.location = location;
         this.ownerName = ownerName;
         this.establishmentYear = establishmentYear;
     }
-
-    // Getters and Setters
     public int getTeamId() {
         return teamId;
     }
-
     public void setTeamId(int teamId) {
         this.teamId = teamId;
     }
-
     public String getTeamName() {
         return teamName;
     }
-
     public void setTeamName(String teamName) {
         this.teamName = teamName;
     }
-
     public String getLocation() {
         return location;
     }
-
     public void setLocation(String location) {
         this.location = location;
     }
-
     public String getOwnerName() {
         return ownerName;
     }
-
     public void setOwnerName(String ownerName) {
         this.ownerName = ownerName;
     }
-
     public int getEstablishmentYear() {
         return establishmentYear;
     }
-
     public void setEstablishmentYear(int establishmentYear) {
         this.establishmentYear = establishmentYear;
     }
+    @Override
+    public int compareTo(Team Obj) {
+        return this.teamName.compareToIgnoreCase(Obj.teamName);
+    }
+    
 }

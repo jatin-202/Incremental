@@ -1,47 +1,59 @@
 package com.edutech.progressive.service.impl;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.edutech.progressive.dao.CricketerDAO;
-import com.edutech.progressive.service.CricketerService;
 import com.edutech.progressive.entity.Cricketer;
+import com.edutech.progressive.service.CricketerService;
 
-public class CricketerServiceImplJdbc implements CricketerService {
+public class CricketerServiceImplJdbc implements CricketerService  {
 
-    private CricketerDAO cricketerDAO;
-
+    public CricketerServiceImplJdbc() {
+    }
+    CricketerDAO cricketerDAO;
+    
     public CricketerServiceImplJdbc(CricketerDAO cricketerDAO) {
         this.cricketerDAO = cricketerDAO;
     }
 
     @Override
-    public List<Cricketer> getAllCricketers() {
-        return new ArrayList<>();
+    public List<Cricketer> getAllCricketers() throws SQLException {
+        return cricketerDAO.getAllCricketers();
     }
 
     @Override
-    public Integer addCricketer(Cricketer cricketer) {
-        return -1;
+    public Integer addCricketer(Cricketer cricketer) throws SQLException{
+        return cricketerDAO.addCricketer(cricketer);
+    }
+     public Comparator<Cricketer> cricketerComparator = new Comparator<Cricketer>() {
+
+        @Override
+        public int compare(Cricketer arg0, Cricketer arg1) {
+            return Integer.compare(arg0.getExperience(), arg1.getExperience());
+        }
+          
+    };
+    @Override
+    public List<Cricketer> getAllCricketersSortedByExperience() throws SQLException{
+        List<Cricketer> c=cricketerDAO.getAllCricketers();
+        Collections.sort(c, cricketerComparator);
+        return c;
+
+    }
+    public void updateCricketer(Cricketer cricketer) throws SQLException
+    {
+       cricketerDAO.updateCricketer(cricketer);
+    }
+    public void deleteCricketer(int cricketerId) throws SQLException
+    {
+        cricketerDAO.deleteCricketer(cricketerId);
+    }
+    public Cricketer getCricketerById(int cricketerId)throws SQLException
+    {
+        return cricketerDAO.getCricketerById(cricketerId) ;
     }
 
-    @Override
-    public List<Cricketer> getAllCricketersSortedByExperience() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public void updateCricketer(Cricketer cricketer) {
-        // do nothing
-    }
-
-    @Override
-    public void deleteCricketer(int cricketerId) {
-        // do nothing
-    }
-
-    @Override
-    public Cricketer getCricketerById(int cricketerId) {
-        return null;
-    }
 }

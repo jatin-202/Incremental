@@ -1,47 +1,30 @@
 package com.edutech.progressive.config;
 
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.util.Properties;
-import java.io.InputStream;
 
 public class DatabaseConnectionManager {
-
-    private static Properties properties = new Properties();
-
+    public static Properties properties= new Properties();
     static {
-        loadProperties();
-    }
-
-    // Load properties file
-    private static void loadProperties() {
         try {
-            InputStream input = DatabaseConnectionManager.class
-                    .getClassLoader()
-                    .getResourceAsStream("application.properties");
-
-            if (input == null) {
-                throw new RuntimeException("application.properties file not found");
+            InputStream is = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("application.properties");
+            properties.load(is);
+        } catch (Exception e) {
+          throw new RuntimeException("Error loading properties", e);
+        }
+    }
+        public static Connection getConnection()
+        {
+            try {
+                String url = properties.getProperty("spring.datasource.url");
+                String user = properties.getProperty("spring.datasource.username");
+                 String password = properties.getProperty("spring.datasource.password");
+                 return DriverManager.getConnection(url, user, password);
+            } catch (Exception e) {
+               throw new RuntimeException("Database connection failed", e);
             }
-
-            properties.load(input);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error loading properties file", e);
         }
     }
-
-    // Get DB Connection
-    public static Connection getConnection() {
-        try {
-            String url = properties.getProperty("db.url");
-            String username = properties.getProperty("db.username");
-            String password = properties.getProperty("db.password");
-
-            return DriverManager.getConnection(url, username, password);
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting database connection", e);
-        }
-    }
-}
