@@ -4,8 +4,6 @@ import com.edutech.progressive.entity.Team;
 import com.edutech.progressive.service.impl.TeamServiceImplArraylist;
 // import com.edutech.progressive.service.impl.TeamServiceImplArraylist;
 import com.edutech.progressive.service.impl.TeamServiceImplJdbc;
-import com.edutech.progressive.service.impl.TeamServiceImplJpa;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +18,12 @@ import java.sql.SQLException;
 import java.util.List;
 @RestController @RequestMapping("/team")
 public class TeamController {
+
     @Autowired
     TeamServiceImplArraylist teamServiceImplArraylist;
     @Autowired
     TeamServiceImplJdbc TeamServiceImplJdbc;
+    
     public ResponseEntity<List<Team>> getAllTeams() {
         return null;
     }
