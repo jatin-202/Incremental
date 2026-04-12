@@ -9,27 +9,26 @@ public class MatchDAOImpl implements MatchDAO {
 
     @Override
     public int addMatch(Match match) {
-        return -1; // placeholder
+        return -1;
     }
 
     @Override
     public Match getMatchById(int matchId) {
-        return null; // placeholder
+        return null;
     }
 
     @Override
     public void updateMatch(Match match) {
-        // placeholder
+        // do nothing
     }
 
     @Override
     public void deleteMatch(int matchId) {
-        // placeholder
+        // do nothing
     }
 
     @Override
     public List<Match> getAllMatches() {
-        return new ArrayList<>(); // placeholder
+        return new ArrayList<>();
     }
-
 }

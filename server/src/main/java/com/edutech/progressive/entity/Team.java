@@ -1,31 +1,36 @@
 package com.edutech.progressive.entity;
 
-// entity/Team.java
+import java.util.Date;
 
 public class Team {
-    private int teamld;
+
+    private int teamId;
     private String teamName;
     private String location;
     private String ownerName;
     private int establishmentYear;
 
+    // No-Argument Constructor
     public Team() {
     }
 
-    public Team(int teamld, String teamName, String location, String ownerName, int establishmentYear) {
-        this.teamld = teamld;
+    // Parameterized Constructor
+    public Team(int teamId, String teamName, String location,
+            String ownerName, int establishmentYear) {
+        this.teamId = teamId;
         this.teamName = teamName;
         this.location = location;
         this.ownerName = ownerName;
         this.establishmentYear = establishmentYear;
     }
 
-    public int getTeamld() {
-        return teamld;
+    // Getters and Setters
+    public int getTeamId() {
+        return teamId;
     }
 
-    public void setTeamld(int teamld) {
-        this.teamld = teamld;
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
     public String getTeamName() {

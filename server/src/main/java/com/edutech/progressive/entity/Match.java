@@ -1,56 +1,58 @@
 package com.edutech.progressive.entity;
 
-// entity/Match.java
-
 import java.util.Date;
 
 public class Match {
-    private int matchld;
-    private int firstTeamld;
-    private int secondTeamld;
+
+    private int matchId;
+    private int firstTeamId;
+    private int secondTeamId;
     private Date matchDate;
     private String venue;
     private String result;
     private String status;
-    private int winnerTeamld;
+    private int winnerTeamId;
 
+    // No-Argument Constructor
     public Match() {
     }
 
-    public Match(int matchld, int firstTeamld, int secondTeamld, Date matchDate, String venue, String result,
-            String status, int winnerTeamld) {
-        this.matchld = matchld;
-        this.firstTeamld = firstTeamld;
-        this.secondTeamld = secondTeamld;
+    // Parameterized Constructor
+    public Match(int matchId, int firstTeamId, int secondTeamId, Date matchDate,
+            String venue, String result, String status, int winnerTeamId) {
+        this.matchId = matchId;
+        this.firstTeamId = firstTeamId;
+        this.secondTeamId = secondTeamId;
         this.matchDate = matchDate;
         this.venue = venue;
         this.result = result;
         this.status = status;
-        this.winnerTeamld = winnerTeamld;
+        this.winnerTeamId = winnerTeamId;
     }
 
-    public int getMatchld() {
-        return matchld;
+    // Getters and Setters
+    public int getMatchId() {
+        return matchId;
     }
 
-    public void setMatchld(int matchld) {
-        this.matchld = matchld;
+    public void setMatchId(int matchId) {
+        this.matchId = matchId;
     }
 
-    public int getFirstTeamld() {
-        return firstTeamld;
+    public int getFirstTeamId() {
+        return firstTeamId;
     }
 
-    public void setFirstTeamld(int firstTeamld) {
-        this.firstTeamld = firstTeamld;
+    public void setFirstTeamId(int firstTeamId) {
+        this.firstTeamId = firstTeamId;
     }
 
-    public int getSecondTeamld() {
-        return secondTeamld;
+    public int getSecondTeamId() {
+        return secondTeamId;
     }
 
-    public void setSecondTeamld(int secondTeamld) {
-        this.secondTeamld = secondTeamld;
+    public void setSecondTeamId(int secondTeamId) {
+        this.secondTeamId = secondTeamId;
     }
 
     public Date getMatchDate() {
@@ -85,11 +87,11 @@ public class Match {
         this.status = status;
     }
 
-    public int getWinnerTeamld() {
-        return winnerTeamld;
+    public int getWinnerTeamId() {
+        return winnerTeamId;
     }
 
-    public void setWinnerTeamld(int winnerTeamld) {
-        this.winnerTeamld = winnerTeamld;
+    public void setWinnerTeamId(int winnerTeamId) {
+        this.winnerTeamId = winnerTeamId;
     }
 }

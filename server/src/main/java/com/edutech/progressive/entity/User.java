@@ -1,26 +1,30 @@
-// entity/Team.java
 package com.edutech.progressive.entity;
 
 public class User {
+
     private int userId;
     private String fullName;
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private String role;
 
+    // No-Argument Constructor
     public User() {
     }
 
-    public User(int userId, String fullName, String userName, String password, String email, String role) {
+    // Parameterized Constructor
+    public User(int userId, String fullName, String username,
+            String password, String email, String role) {
         this.userId = userId;
         this.fullName = fullName;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.role = role;
     }
 
+    // Getters and Setters
     public int getUserId() {
         return userId;
     }
@@ -37,12 +41,12 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -68,5 +72,4 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
 }
