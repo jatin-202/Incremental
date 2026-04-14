@@ -57,6 +57,8 @@ public class TeamController {
         return new ResponseEntity<>(teamServiceImplArraylist.addTeam(team),HttpStatus.CREATED) ;
     }
    
+
+    
     @GetMapping("/fromArrayList/sorted")
     public ResponseEntity<List<Team>> getAllTeamsSortedByNameFromArrayList() {
         return new ResponseEntity<>(teamServiceImplArraylist.getAllTeamsSortedByName(),HttpStatus.OK) ;
