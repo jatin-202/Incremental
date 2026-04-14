@@ -1,11 +1,13 @@
-
 package com.edutech.progressive.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CollectionId;
@@ -30,6 +32,10 @@ private String role;
 private int totalRuns;
 @Column(name="total_wickets")
 private int totalWickets;
+@ManyToOne(fetch = FetchType.LAZY)
+@JoinColumn(name = "team_id",insertable = false,updatable = false)
+private Team team;
+
 
 public Cricketer() {
 }
@@ -114,6 +120,20 @@ public void setNationality(String nationality) {
 public int compareTo(Cricketer Obj) {
     return Integer.compare(this.getExperience(),Obj.getExperience());
 }
+
+
+public Team getTeam() {
+    return team;
+}
+
+public void setTeam(Team team) {
+    this.team = team;
+    if (team != null) {
+        this.teamId = team.getTeamId();   
+    }
+}
+
+
 
 
 }
