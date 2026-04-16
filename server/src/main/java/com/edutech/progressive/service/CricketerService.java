@@ -1,4 +1,3 @@
-
 package com.edutech.progressive.service;
 
 import com.edutech.progressive.entity.Cricketer;
@@ -16,6 +15,9 @@ public interface CricketerService {
 
     default void emptyArrayList() throws SQLException {
     }
+
+    //Do not implement these methods in CricketerServiceImplArraylist.java class
+  
 
     //Do not implement these methods in CricketerServiceImplArraylist.java class
     default void updateCricketer(Cricketer cricketer) throws SQLException{}

@@ -6,15 +6,23 @@ import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.edutech.progressive.entity.Match;
 
 public interface MatchRepository extends JpaRepository<Match,Integer>{
 
-    // public Match findByMatchId(int matchId);
-    // public List<Match> findAllByStatus(String status);
-    // @Modifying 
-    // @Transactional
-    // public void deleteByTeamId(int teamId);
+    Match findByMatchId(int matchId);
+ 
+List<Match> findAllByStatus(String status);
+ 
+@Modifying
+ 
+@Transactional
+ 
+@Query("DELETE FROM matches m WHERE m.firstTeam.teamId = :teamId OR m.secondTeam.teamId = :teamId")
+ 
+void deleteByTeamId(@Param("teamId") int teamId);
 
 }

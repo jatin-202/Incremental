@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.edutech.progressive.entity.Team;
 import com.edutech.progressive.service.TeamService;
-
 @Service
 public class TeamServiceImplArraylist implements TeamService {
 

@@ -1,4 +1,3 @@
-
 package com.edutech.progressive.dao;
 
 import com.edutech.progressive.entity.Match;
@@ -12,4 +11,5 @@ public interface MatchDAO {
     void updateMatch(Match match)throws SQLException;
     void deleteMatch(int matchId)throws SQLException;
     List<Match> getAllMatches()throws SQLException;
+    
 }
