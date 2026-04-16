@@ -33,7 +33,7 @@ public class Team implements Comparable<Team> {
     private int establishmentYear;
  
     public Team() {
- 
+        
     }
  
     public Team(int teamId, String teamName, String location, String ownerName, int establishmentYear) {
