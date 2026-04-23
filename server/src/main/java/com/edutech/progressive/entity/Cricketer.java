@@ -12,6 +12,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CollectionId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="cricketer")
 public class Cricketer implements Comparable<Cricketer> {
@@ -34,6 +36,7 @@ private int totalRuns;
 private int totalWickets;
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "team_id",insertable = false,updatable = false)
+@JsonIgnore
 private Team team;
 
 

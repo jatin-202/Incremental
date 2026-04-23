@@ -32,7 +32,7 @@ public class CricketerServiceImplJpa implements CricketerService {
 
     @Override
     public Integer addCricketer(Cricketer cricketer) throws SQLException {
-        long count = cricketerRepository.countByTeam_TeamId(cricketer.getTeam().getTeamId());
+        long count = cricketerRepository.countByTeam_TeamId(cricketer.getTeamId());
         if (count >= 11) {
             throw new TeamCricketerLimitExceededException(
                     "Team already has maximum limit of 11 cricketers");
@@ -93,4 +93,5 @@ public class CricketerServiceImplJpa implements CricketerService {
     public List<Cricketer> getCricketersByTeam(int teamId) throws SQLException {
         return cricketerRepository.findByTeam_TeamId(teamId);
     }
+    
 }
