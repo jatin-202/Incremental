@@ -22,9 +22,9 @@ export class LogoutComponent implements OnInit {
  
   logout(): void {
  
-    localStorage.removeItem('token')
+    localStorage.clear()
  
-    this.router.navigate(["/auth"]);
+    this.router.navigate(["/auth/login"]);
  
   }
  

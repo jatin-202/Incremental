@@ -1,34 +1,30 @@
+
 package com.edutech.progressive.service.impl;
 
 import com.edutech.progressive.entity.User;
 import com.edutech.progressive.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class UserLoginServiceImpl implements UserDetailsService {
-
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    public UserLoginServiceImpl() {
-    }
-
-    public UserLoginServiceImpl(UserRepository userRepository) {
+    
+    @Autowired
+    public UserLoginServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getAllUsers() {
@@ -39,25 +35,20 @@ public class UserLoginServiceImpl implements UserDetailsService {
         return userRepository.findById(userId);
     }
 
-    public User createUser(User user) {
-        User existingByUsername = userRepository.findByUsername(user.getUsername());
-        if (existingByUsername != null) {
-            throw new RuntimeException("Username already exists");
+    public User createUser(User user) throws Exception{
+        User oldUser = userRepository.findByUsername(user.getUsername());
+        User emailExists = userRepository.findByEmail(user.getEmail());
+        if(oldUser != null){
+            throw new Exception("User name is Unavailable: " + user.getUsername());
         }
-
-        User existingByEmail = userRepository.findByEmail(user.getEmail());
-        if (existingByEmail != null) {
-            throw new RuntimeException("Email already exists");
+        if(emailExists != null){
+            throw new Exception("User already exists with the given email: "+user.getEmail());
         }
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
     public User updateUser(User user) {
-        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         return userRepository.save(user);
     }
 
@@ -65,22 +56,18 @@ public class UserLoginServiceImpl implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
-    public User getUserByUsername(String username) {
+  
+
+     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userRepository.findByUsername(username);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found with username: " + username);
+        if(user == null){
+            throw new UsernameNotFoundException("User not found");
         }
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRole()))
-        );
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
     }
 }

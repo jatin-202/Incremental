@@ -4,6 +4,9 @@ import { IplService } from '../../services/ipl.service';
 import { Match } from '../../types/Match';
 import { TicketBooking } from '../../types/TicketBooking';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+``
+
 @Component({
   selector: 'app-ticketbooking',
   templateUrl: './ticketbooking.component.html',
@@ -15,23 +18,31 @@ export class TicketBookingComponent implements OnInit {
   successMessage: string | null = null;
   errorMessage: string | null = null;
   matches: Match[] = [];
+  userEmail: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
-    private iplService: IplService
-  ) {}
+    private iplService: IplService,
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
+    this.userEmail = localStorage.getItem('email') || '';
+    console.log("Email 👉", this.userEmail);
     this.loadMatches();
     this.ticketBookingForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: [this.userEmail, [Validators.required]],
       match: [null, Validators.required],
-      numberOfTickets: [null, [Validators.required, Validators.min(1)]]
+      numberOfTickets: [null, [Validators.required, Validators.min(1), Validators.max(10)]]
     });
   }
+
   loadMatches(): void {
     this.iplService.getAllMatches().subscribe((matches) => {
       this.matches = matches;
     });
   }
+
   onSubmit(): void {
     if (this.ticketBookingForm.valid) {
       this.bookTicket();
@@ -45,26 +56,26 @@ export class TicketBookingComponent implements OnInit {
       (response: TicketBooking) => {
         this.successMessage = 'Ticket booked successfully!';
         this.errorMessage = null;
-        this.resetForm();
+
+        this.ticketBookingForm.patchValue({
+          match: null,
+          numberOfTickets: null
+        });
       },
       (error: HttpErrorResponse) => {
         this.handleError(error);
       }
     );
   }
-  resetForm(): void {
-    this.ticketBookingForm.reset();
-  }
   private handleError(error: HttpErrorResponse): void {
     if (error.error instanceof ErrorEvent) {
       this.errorMessage = `Client-side error: ${error.error.message}`;
     } else {
-      this.errorMessage = `Server-side error: ${error.status} ${error.message}`;
+      this.errorMessage = `Error: ${error.status} ${error.message}`;
       if (error.status === 400) {
         this.errorMessage = 'Bad request. Please check your input.';
       }
     }
     this.successMessage = null;
-    console.error('An error occurred:', this.errorMessage);
   }
-} 
+}

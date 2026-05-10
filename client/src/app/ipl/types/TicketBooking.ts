@@ -1,24 +1,23 @@
+import { Match } from "./Match";
 export class TicketBooking {
     bookingId: number;
     email: string;
-    matchId: number;
+    match:Match;
     numberOfTickets: number;
-
     constructor(
         bookingId: number,
         email: string,
-        matchId: number,
+        match:Match,
         numberOfTickets: number
     ) {
         this.bookingId = bookingId;
         this.email = email;
-        this.matchId = matchId;
+        this.match = match;
         this.numberOfTickets = numberOfTickets;
     }
-
-    displayInfo(): void {
-        console.log(`Booking ID: ${this.bookingId}, 
-            Email: ${this.email}, 
-            Number Of Tickets: ${this.numberOfTickets}`);
+    displayInfo() {
+        console.log(`Booking ID: ${this.bookingId}`);
+        console.log(`Email: ${this.email}`);
+        console.log(`Number of Tickets: ${this.numberOfTickets}`);
     }
 }

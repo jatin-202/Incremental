@@ -1,14 +1,21 @@
-
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { Team } from "../types/Team";
-import { Cricketer } from "../types/Cricketer";
-import { Match } from "../types/Match";
-import { Vote } from "../types/Vote";
-import { TicketBooking } from "../types/TicketBooking";
-import { environment } from "../../../environments/environment.development";
 
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+import { Observable } from "rxjs";
+
+import { Team } from "../types/Team";
+
+import { Cricketer } from "../types/Cricketer";
+
+import { Match } from "../types/Match";
+
+import { Vote } from "../types/Vote";
+
+import { TicketBooking } from "../types/TicketBooking";
+
+import { environment } from "../../../environments/environment.development";
+ 
 @Injectable({
 
   providedIn: "root",
@@ -19,7 +26,7 @@ export class IplService {
 
   private baseUrl = `${environment.apiUrl}`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   //Backend API calls of Team
 
@@ -206,3 +213,4 @@ export class IplService {
   }
 
 }
+ 

@@ -1,27 +1,82 @@
-<div class="login-form-container">
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-<h2>Login</h2>
-<div>
-<label for="username">Username</label>
-<input id="username" formControlName="username" type="text" placeholder="Enter Username">
-<div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
-<small *ngIf="loginForm.get('username')?.hasError('required')">Username is required.</small>
-<small *ngIf="loginForm.get('username')?.hasError('pattern')">Username cannot contain special characters.</small>
-</div>
-</div>
-<div>
-<label for="password">Password</label>
-<input id="password" formControlName="password" type="password" placeholder="Enter Password">
-<div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
-<small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
-<small *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 8 characters long.</small>
-<small *ngIf="loginForm.get('password')?.hasError('pattern')">Password must contain at least one capital letter and one numeric digit.</small>
-</div>
-</div>
-<button type="submit">Login</button>
-<a routerLink="/auth/register" class="task-list">Sign up</a>
-<div *ngIf="errorMessage" class="error">
-<p>{{ errorMessage }}</p>
-</div>
-</form>
+
+
+<div class="login-page">
+  <!-- Background blur overlay -->
+  <div class="bg-overlay"></div>
+
+  <div class="login-layout">
+
+    <!-- LEFT: Intro Panel -->
+    <div class="intro-panel">
+      <div class="intro-content">
+        <div class="intro-badge">OFFICIAL PLATFORM</div>
+        <h1 class="intro-title">
+          Welcome to<br/>
+          <span class="highlight">IPL Manager</span>
+        </h1>
+        <p class="intro-desc">
+          Your all-in-one platform to track teams, cricketers, matches, cast votes and book tickets — all in real time.
+        </p>
+        <div class="intro-features">
+          <div class="feature-item"> Player Profiles & Stats</div>
+          <div class="feature-item"> Vote for Best Cricketer & Team</div>
+          <div class="feature-item"> Easy Ticket Booking</div>
+        </div>
+        <div class="intro-tagline">"Cricket is not just a sport. It's a passion."</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Login Card -->
+    <div class="login-card-wrapper">
+      <div class="login-form-container">
+        <h2 class="card-title">IPL Dashboard Login</h2>
+
+        <!-- Role Selection Buttons -->
+        <div class="login-options">
+          <button type="button" class="role-btn" [class.active]="selectedRole === 'USER'" (click)="selectRole('USER')">
+            🏏 User Login
+          </button>
+          <button type="button" class="role-btn" [class.active]="selectedRole === 'ADMIN'" (click)="selectRole('ADMIN')">
+            🛡️ Admin Login
+          </button>
+        </div>
+
+        <!-- Login Fields (shown after role selected) -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form" *ngIf="selectedRole">
+          <p class="role-label">Logging in as: <strong>{{ selectedRole }}</strong>
+            <span class="change-link" (click)="selectedRole = null">Change</span>
+          </p>
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input id="username" formControlName="username" type="text" placeholder="Enter Username" />
+            <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+              <small *ngIf="loginForm.get('username')?.hasError('required')">Username is required.</small>
+              <small *ngIf="loginForm.get('username')?.hasError('pattern')">Username cannot contain special characters.</small>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" formControlName="password" type="password" placeholder="Enter Password" />
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+              <small *ngIf="loginForm.get('password')?.hasError('required')">Password is required.</small>
+              <small *ngIf="loginForm.get('password')?.hasError('minlength')">Password must be at least 8 characters long.</small>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
+            Login as {{ selectedRole }}
+          </button>
+        </form>
+
+        <a routerLink="/auth/register" class="task-list">Don't have an account? Sign up</a>
+
+        <div *ngIf="errorMessage" class="error error-msg">
+          <p>{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

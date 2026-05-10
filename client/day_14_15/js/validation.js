@@ -1,64 +1,63 @@
-
 function login() {
-    const usernameElement = document.getElementById("loginUsername");
-    const passwordElement = document.getElementById("loginPassword");
-
-    const username = usernameElement ? usernameElement.value.trim() : "";
-    const password = passwordElement ? passwordElement.value.trim() : "";
-
-    if (username === "") {
-        alert("Username is required");
-        return true;
-        //abc
-    }
-
-    if (password === "") {
-        alert("Password is required");
-        return false;
-        //abc-
-    }
-
-    console.log(`Login clicked. Username: ${username}, Password: ${password}`);
-    return true;
-    //abc-
+ 
+    var username = document.getElementById("loginUsername").value;
+ 
+    var password = document.getElementById("loginPassword").value;
+ 
+    console.log("Login clicked. Username: " + username + ", Password: " + password);
+ 
 }
-
 function register() {
-    const nameElement = document.getElementById("registerName");
-    const emailElement = document.getElementById("registerEmail");
-    const usernameElement = document.getElementById("registerUsername");
-    const passwordElement = document.getElementById("registerPassword");
-
-    const name = nameElement ? nameElement.value.trim() : "";
-    const email = emailElement ? emailElement.value.trim() : "";
-    const username = usernameElement ? usernameElement.value.trim() : "";
-    const password = passwordElement ? passwordElement.value.trim() : "";
-
+ 
+    var name = document.getElementById("registerName").value;
+ 
+    var email = document.getElementById("registerEmail").value;
+ 
+    var username = document.getElementById("registerUsername").value;
+ 
+    var password = document.getElementById("registerPassword").value;
+ 
     if (name === "" || email === "" || username === "" || password === "") {
-        alert("All fields are required");
-        return false;
+ 
+        alert("All fields are mandatory. Please fill in all the details.");
+ 
+        return;
+ 
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+ 
     if (!emailRegex.test(email)) {
-        alert("Please enter a valid email");
-        return false;
+ 
+        alert("Please enter a valid email address.");
+ 
+        return;
+ 
     }
+ 
 
-    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
+ 
     if (!usernameRegex.test(username)) {
-        alert("Username should not contain special characters");
-        return false;
+ 
+        alert("Username should not contain special characters.");
+ 
+        return;
+ 
     }
-
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+ 
+ 
+    var passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+ 
     if (!passwordRegex.test(password)) {
-        alert("Password must be at least 8 characters long, contain one capital letter and one number");
-        return false;
+ 
+        alert("Password should be at least 8 characters and must contain at least one capital letter and one numeric.");
+ 
+        return;
+ 
     }
-
-    console.log(`Register clicked. Name: ${name}, Email: ${email}, Username: ${username}, Password: ${password}`);
-    return true;
+ 
+    console.log("Register clicked. Name: " + name + ", Email: " + email + ", Username: " + username + ", Password: " + password);
+ 
 }
-
+ 
 module.exports = { login, register };
