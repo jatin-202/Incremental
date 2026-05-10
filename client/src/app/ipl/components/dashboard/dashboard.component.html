@@ -19,12 +19,17 @@
         <thead>
           <tr>
             <th><input type="checkbox" (change)="selectAllTeams($event)" title="Select All"></th>
-            <th>ID</th><th>Name</th><th>Location</th><th>Owner</th><th>Actions</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Owner</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let team of teams" [class.selected-row]="selectedTeamIds.has(team.teamId)">
-            <td><input type="checkbox" [checked]="selectedTeamIds.has(team.teamId)" (change)="toggleTeamSelection(team.teamId, $event)"></td>
+            <td><input type="checkbox" [checked]="selectedTeamIds.has(team.teamId)"
+                (change)="toggleTeamSelection(team.teamId, $event)"></td>
             <td>{{ team.teamId }}</td>
             <td>{{ team.teamName }}</td>
             <td>{{ team.location }}</td>
@@ -42,12 +47,14 @@
     <section class="card">
       <div class="section-header">
         <h3>Cricketer List</h3>
-        <button class="delete-selected-btn" (click)="deleteSelectedCricketers()" [disabled]="selectedCricketerIds.size === 0">
+        <button class="delete-selected-btn" (click)="deleteSelectedCricketers()"
+          [disabled]="selectedCricketerIds.size === 0">
           🗑 Delete Selected ({{ selectedCricketerIds.size }})
         </button>
       </div>
       <div class="filter-bar">
-        <input type="text" placeholder="🔍 Search by name..." (input)="onCricketerSearch($any($event.target).value)" class="filter-input">
+        <input type="text" placeholder="🔍 Search by name..." (input)="onCricketerSearch($any($event.target).value)"
+          class="filter-input">
         <select (change)="onCricketerSortChange($any($event.target).value)" class="filter-select">
           <option value="asc">Age: Low → High</option>
           <option value="desc">Age: High → Low</option>
@@ -58,12 +65,18 @@
         <thead>
           <tr>
             <th><input type="checkbox" (change)="selectAllCricketers($event)" title="Select All"></th>
-            <th>ID</th><th>Name</th><th>Age</th><th>Team</th><th>Role</th><th>Actions</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Team</th>
+            <th>Role</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let c of filteredCricketers" [class.selected-row]="selectedCricketerIds.has(c.cricketerId)">
-            <td><input type="checkbox" [checked]="selectedCricketerIds.has(c.cricketerId)" (change)="toggleCricketerSelection(c.cricketerId, $event)"></td>
+            <td><input type="checkbox" [checked]="selectedCricketerIds.has(c.cricketerId)"
+                (change)="toggleCricketerSelection(c.cricketerId, $event)"></td>
             <td>{{ c.cricketerId }}</td>
             <td>{{ c.cricketerName }}</td>
             <td>{{ c.age }}</td>
@@ -94,19 +107,26 @@
           <option value="Abandoned">Abandoned</option>
           <option value="No Result">No Result</option>
         </select>
-        <input type="text" placeholder="🔍 Search by venue..." (input)="onMatchVenueSearch($any($event.target).value)" class="filter-input">
+        <input type="text" placeholder="🔍 Search by venue..." (input)="onMatchVenueSearch($any($event.target).value)"
+          class="filter-input">
       </div>
       <div *ngIf="filteredMatches.length === 0" class="empty-list">No matches found.</div>
       <table *ngIf="filteredMatches.length !== 0" class="table">
         <thead>
           <tr>
             <th><input type="checkbox" (change)="selectAllMatches($event)" title="Select All"></th>
-            <th>ID</th><th>Date</th><th>Venue</th><th>Teams</th><th>Status</th><th>Actions</th>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Teams</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let match of filteredMatches" [class.selected-row]="selectedMatchIds.has(match.matchId)">
-            <td><input type="checkbox" [checked]="selectedMatchIds.has(match.matchId)" (change)="toggleMatchSelection(match.matchId, $event)"></td>
+            <td><input type="checkbox" [checked]="selectedMatchIds.has(match.matchId)"
+                (change)="toggleMatchSelection(match.matchId, $event)"></td>
             <td>{{ match.matchId }}</td>
             <td>{{ match.matchDate | date }}</td>
             <td>{{ match.venue }}</td>
@@ -127,7 +147,11 @@
       <div *ngIf="voteArray.length === 0" class="empty-list">No votes available.</div>
       <table *ngIf="voteArray.length !== 0" class="table">
         <thead>
-          <tr><th>Category</th><th>Voted For</th><th>Customer Email</th></tr>
+          <tr>
+            <th>Category</th>
+            <th>Voted For</th>
+            <th>Customer Email</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let vote of voteArray">
@@ -145,7 +169,12 @@
       <div *ngIf="allTicketsBooked.length === 0" class="empty-list">No tickets booked.</div>
       <table *ngIf="allTicketsBooked.length !== 0" class="table">
         <thead>
-          <tr><th>Booking ID</th><th>Email</th><th>Match</th><th>Tickets</th></tr>
+          <tr>
+            <th>Booking ID</th>
+            <th>Email</th>
+            <th>Match</th>
+            <th>Tickets</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let ticket of allTicketsBooked">
@@ -168,7 +197,12 @@
       <div *ngIf="teams.length === 0" class="empty-list">No teams available.</div>
       <table *ngIf="teams.length !== 0" class="table">
         <thead>
-          <tr><th>ID</th><th>Name</th><th>Location</th><th>Owner</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Owner</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let team of teams">
@@ -185,7 +219,8 @@
     <section class="card">
       <h3>Cricketer List</h3>
       <div class="filter-bar">
-        <input type="text" placeholder="🔍 Search by name..." (input)="onCricketerSearch($any($event.target).value)" class="filter-input">
+        <input type="text" placeholder="🔍 Search by name..." (input)="onCricketerSearch($any($event.target).value)"
+          class="filter-input">
         <select (change)="onCricketerSortChange($any($event.target).value)" class="filter-select">
           <option value="asc">Age: Low → High</option>
           <option value="desc">Age: High → Low</option>
@@ -194,7 +229,13 @@
       <div *ngIf="filteredCricketers.length === 0" class="empty-list">No cricketers found.</div>
       <table *ngIf="filteredCricketers.length !== 0" class="table">
         <thead>
-          <tr><th>ID</th><th>Name</th><th>Age</th><th>Team</th><th>Role</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Team</th>
+            <th>Role</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let c of filteredCricketers">
@@ -219,12 +260,19 @@
           <option value="Abandoned">Abandoned</option>
           <option value="No Result">No Result</option>
         </select>
-        <input type="text" placeholder="🔍 Search by venue..." (input)="onMatchVenueSearch($any($event.target).value)" class="filter-input">
+        <input type="text" placeholder="🔍 Search by venue..." (input)="onMatchVenueSearch($any($event.target).value)"
+          class="filter-input">
       </div>
       <div *ngIf="filteredMatches.length === 0" class="empty-list">No matches found.</div>
       <table *ngIf="filteredMatches.length !== 0" class="table">
         <thead>
-          <tr><th>ID</th><th>Date</th><th>Venue</th><th>Teams</th><th>Status</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Teams</th>
+            <th>Status</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let match of filteredMatches">
@@ -244,12 +292,21 @@
       <div *ngIf="voteList.length === 0" class="empty-list">No votes available.</div>
       <table *ngIf="voteList.length !== 0" class="table">
         <thead>
-          <tr><th>Category</th><th>Voted For</th></tr>
+          <tr>
+            <th>Category</th>
+            <th>Voted For</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let vote of voteList">
             <td>{{ vote.category }}</td>
-            <td>{{ vote.cricketer !== null ? vote.cricketer.cricketerName : vote.team.teamName }}</td>
+            <td>
+              {{
+              vote.cricketer && vote.cricketer.cricketerName
+              ? vote.cricketer.cricketerName
+              : vote.team?.teamName
+              }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -261,7 +318,12 @@
       <div *ngIf="ticketsBooked.length === 0" class="empty-list">You have no ticket bookings.</div>
       <table *ngIf="ticketsBooked.length !== 0" class="table">
         <thead>
-          <tr><th>ID</th><th>Match</th><th>Match Date</th><th>No. of Tickets</th></tr>
+          <tr>
+            <th>ID</th>
+            <th>Match</th>
+            <th>Match Date</th>
+            <th>No. of Tickets</th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let ticket of ticketsBooked">
